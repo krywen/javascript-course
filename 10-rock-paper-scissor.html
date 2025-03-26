@@ -3,53 +3,10 @@
   <head> 
     <title>rock paper Scissors</title>
     
-    <style>
-      body {
-        background-color: rgb(25, 25, 25);
-        color: white;
-        font-family: Arial;
-      }
-      .title {
-         font-size: 30px;
-         font-weight: bold;
-      }
-      .reset-button {
-        background-color: #333; /* Dark gray background */
-        color: white;
-        border: 2px solid white;
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-top: 10px;
-      }
-      .move-icon {
-        height: 50px;
-      }
-      .move-button {
-        background-color: transparent;
-        border: 3px solid white;
-        width: 120px;
-        height: 120px;
-        border-radius: 60px;
-        margin-right: 10px;
-        cursor: pointer;
-      }
-      .result {
-        font-size: 25px;
-        font-weight: bold;
-        margin-top: 50px;
-      }
-      .score {
-        margin-top: 60px;
-      }
-      .reset-score-button {
-        background-color: white;
-        border: none;
-        font-size: 15px;
-        padding: 8px 15px;
-        cursor: pointer;
-      }
-    </style>
+    <!-- load a css -->
+    <link 
+    rel="stylesheet"
+    href="styles/10-rock-paper-scissors.css">
 
   </head>
 
@@ -90,98 +47,6 @@
       Reset Score
     </button>
 
-    <script>
-      let result = '';
-      let score = JSON.parse(localStorage.getItem('score')) || {
-          wins: 0,
-          losses: 0,
-          ties: 0
-        };
-      updateScoreElement();
-
-      function getComputerMove() {
-        const randomNumber = Math.random();
-        if (randomNumber < 0.34) {
-          return 'rock';
-        } else if (randomNumber < 0.67) {
-          return 'paper';
-        } else {
-          return 'scissors';
-        }
-        console.log(computerMove);
-      }
-
-      function playGame(playerMove) {
-        computerMove = getComputerMove();
-
-        if (playerMove === 'paper') {
-          if (computerMove === 'rock') {
-            result = 'You Win.';
-          } else if (computerMove === 'paper') {
-            result = 'Tie.';
-          } else {
-            result = 'You Lose.';
-          }
-        } else if(playerMove === 'rock') {
-          if (computerMove === 'rock') {
-            result = 'Tie.';
-          } else if (computerMove === 'paper') {
-            result = 'You Lose.';
-          } else {
-            result = 'You win.';
-          }
-        } else { // Scissors
-          if (computerMove === 'scissors') {
-            result = 'Tie.';
-          } else if (computerMove === 'paper') {
-            result = 'You Win.';
-          } else {
-            result = 'You Lose.';
-          }
-        }
-
-        if (result === 'You Win.') {
-          score.wins++;
-        } else if (result === 'You Lose.') {
-          score.losses++;
-        } else {
-          score.ties++;
-        }
-
-        localStorage.setItem('score', JSON.stringify(score));
-
-        updateScoreElement();
-        document.querySelector('.js-result').innerHTML = result;
-        document.querySelector('.js-moves').innerHTML = `You
-          <img src="images/${playerMove}-emoji.png" class="move-icon">
-          <img src="images/${computerMove}-emoji.png" class="move-icon">
-          Computer`;
-      }
-
-      function updateScoreElement() {
-        document.querySelector('.js-score')
-        .innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
-      }
-
-      const product2 = {
-        name: 'shirt',
-        ['delivery-time']: '1 day',
-        ['delivery-time'+'fff']: '1 day',
-        ratings: {
-          stars: 4.5,
-          count: 87
-        },
-        fun: function f1() {
-          console.log('f1 inside product2');
-        }
-      }
-      console.log(product2['name']);
-      console.log(product2['delivery-time']);
-      console.log(product2['delivery-time'+'fff']);
-      console.log(product2.ratings.stars);
-      product2.fun();
-
-      console.log(JSON.stringify(product2));
-    </script>
+    <script src="scripts/10-rock-paper-scissors.js"></script>
   </body>
 </html>
