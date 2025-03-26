@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head> 
+    <title>Functions</title>
+    
+    <style>
+    </style>
+
+  </head>
+
+  <body>
+
+    <script>
+      /*
+      const product = {
+        name: 'socks',
+        price: 1090
+      };
+
+      console.log(product.name);
+      product.name = 'cotton socks ';
+      product.newProperty = 'test';
+      delete product.newProperty;
+      */
+
+      console.log('hello'.length)
+      console.log('hello'.toUpperCase())
+
+      // Objects are references
+      const obj1 = {
+        messages: 'hello'
+      };
+      const obj2 = obj1;
+      obj1.messages = "hey"
+
+      const obj3 = {
+        messages: 'hello'
+      };
+      const obj4 = {
+        messages: 'hello'
+      };
+
+      // false, compare references not content
+      console.log(obj3 === obj4);
+      // true, same reference
+      console.log(obj1 === obj2);
+
+      // these are equivalent -> Destructuring
+      // const messages = obj4.messages;
+      const { messages } = obj4
+
+      const obj5 = {
+        message: 'hello',
+        price: 6699
+      };
+
+      // Destructuring
+      const {message, price} = obj5;
+
+      // Shorthand property
+      const object5 = {
+        // From an existing var
+        message: message,
+
+        method: function fun1() {
+          console.log('method');
+        }
+      };
+      object5.method();
+      
+    </script>
+  </body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head> 
+    <title>Booleans</title>
+    
+    <style>
+    </style>
+
+  </head>
+
+  <body>
+    <p>Rock Paper Scissors</p>
+
+    <button onclick="
+      playGame('Rock');
+      
+      alert(`You picked Rock and computer picked ${computerMove}. ${result}`);
+    ">
+      Rock
+    </button>
+
+    <button onclick="
+      playGame('Paper');
+      
+      alert(`You picked Paper and computer picked ${computerMove}. ${result}`);
+    ">
+      Paper
+    </button>
+
+    <button onclick="
+      playGame('Scissors');
+
+      alert(`You picked Scissors and computer picked ${computerMove}. ${result}`);
+    ">
+      Scissors
+    </button>
+
+    <script>
+      // let computerMove = '';
+      let result = '';
+
+      function getComputerMove() {
+        const randomNumber = Math.random();
+        if (randomNumber < 0.34) {
+          return 'Rock';
+        } else if (randomNumber < 0.67) {
+          return 'Paper';
+        } else {
+          return 'Scissors';
+        }
+        console.log(computerMove);
+      }
+
+      function playGame(playerMove) {
+        computerMove = getComputerMove();
+
+        if (playerMove === 'Paper') {
+          if (computerMove === 'Rock') {
+            result = 'You Win.';
+          } else if (computerMove === 'Paper') {
+            result = 'Tie.';
+          } else {
+            result = 'You Lose.';
+          }
+        } else if(playerMove === 'Rock') {
+          if (computerMove === 'Rock') {
+            result = 'Tie.';
+          } else if (computerMove === 'Paper') {
+            result = 'You Lose.';
+          } else {
+            result = 'You win.';
+          }
+        } else { // Scissors
+          if (computerMove === 'Scissors') {
+            result = 'Tie.';
+          } else if (computerMove === 'Paper') {
+            result = 'You Win.';
+          } else {
+            result = 'You Lose.';
+          }
+        }
+
+      }
+      // same as if(5) {"hi"}
+      // && is GUARD operator, it does NOT return a boolean, it returns the first value if it is truthy, otherwise it returns the second value
+      5 && "hi";
+      // USD is default operator, it returns the first value if it is truthy, otherwise it returns the second value
+      const currency = false || "USD"
+      console.log(currency);
+    </script>
+  </body>
+</html>

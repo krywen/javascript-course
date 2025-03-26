@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head> 
+    <title>Booleans</title>
+    
+    <style>
+    </style>
+
+  </head>
+
+  <body>
+    <p>Rock Paper Scissors</p>
+
+    <button onclick="
+      playGame('Rock');
+    ">
+      Rock
+    </button>
+
+    <button onclick="
+      playGame('Paper');
+    ">
+      Paper
+    </button>
+
+    <button onclick="
+      playGame('Scissors');
+    ">
+      Scissors
+    </button>
+
+    <button onclick="
+      score.losses = 0;
+      score.wins = 0;
+      score.ties = 0;
+      localStorage.removeItem('score')
+    ">
+      Reset Score
+    </button>
+
+    <script>
+      let result = '';
+      let score = JSON.parse(localStorage.getItem('score')) || {
+          wins: 0,
+          losses: 0,
+          ties: 0
+        };
+
+      function getComputerMove() {
+        const randomNumber = Math.random();
+        if (randomNumber < 0.34) {
+          return 'Rock';
+        } else if (randomNumber < 0.67) {
+          return 'Paper';
+        } else {
+          return 'Scissors';
+        }
+        console.log(computerMove);
+      }
+
+      function playGame(playerMove) {
+        computerMove = getComputerMove();
+
+        if (playerMove === 'Paper') {
+          if (computerMove === 'Rock') {
+            result = 'You Win.';
+          } else if (computerMove === 'Paper') {
+            result = 'Tie.';
+          } else {
+            result = 'You Lose.';
+          }
+        } else if(playerMove === 'Rock') {
+          if (computerMove === 'Rock') {
+            result = 'Tie.';
+          } else if (computerMove === 'Paper') {
+            result = 'You Lose.';
+          } else {
+            result = 'You win.';
+          }
+        } else { // Scissors
+          if (computerMove === 'Scissors') {
+            result = 'Tie.';
+          } else if (computerMove === 'Paper') {
+            result = 'You Win.';
+          } else {
+            result = 'You Lose.';
+          }
+        }
+
+        if (result === 'You Win.') {
+          score.wins++;
+        } else if (result === 'You Lose.') {
+          score.losses++;
+        } else {
+          score.ties++;
+        }
+
+        localStorage.setItem('score', JSON.stringify(score));
+
+
+      alert(`You picked ${playerMove} and computer picked ${computerMove}. ${result}
+Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`);
+      }
+
+      const product2 = {
+        name: 'shirt',
+        ['delivery-time']: '1 day',
+        ['delivery-time'+'fff']: '1 day',
+        ratings: {
+          stars: 4.5,
+          count: 87
+        },
+        fun: function f1() {
+          console.log('f1 inside product2');
+        }
+      }
+      console.log(product2['name']);
+      console.log(product2['delivery-time']);
+      console.log(product2['delivery-time'+'fff']);
+      console.log(product2.ratings.stars);
+      product2.fun();
+
+      console.log(JSON.stringify(product2));
+    </script>
+  </body>
+</html>

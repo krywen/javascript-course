@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head> 
+    <title>Booleans</title>
+    
+    <style>
+    </style>
+
+  </head>
+
+  <body>
+    <p>Rock Paper Scissors</p>
+
+    <button onclick="
+      const randomNumber = Math.random();
+      let computerMove = '';
+      let result = '';
+
+      if (randomNumber < 0.34) {
+        computerMove = 'Rock';
+      } else if (randomNumber < 0.67) {
+        computerMove = 'Paper';
+      } else {
+        computerMove = 'Scissors';
+      }
+      console.log(computerMove);
+
+      if (computerMove === 'Rock') {
+        result = 'Tie.';
+      } else if (computerMove === 'Paper') {
+        result = 'You lose.';
+      } else {
+        result = 'You win.';
+      }
+      alert(`You picked Rock and computer picked ${computerMove}. ${result}`);
+    ">
+      Rock
+    </button>
+
+    <button onclick="
+      const randomNumber = Math.random();
+      let computerMove = '';
+      let result = '';
+
+      if (randomNumber < 0.34) {
+        computerMove = 'Rock';
+      } else if (randomNumber < 0.67) {
+        computerMove = 'Paper';
+      } else {
+        computerMove = 'Scissors';
+      }
+      console.log(computerMove);
+
+      if (computerMove === 'Rock') {
+        result = 'You Lose.';
+      } else if (computerMove === 'Paper') {
+        result = 'Tie.';
+      } else {
+        result = 'You Lose.';
+      }
+      alert(`You picked Paper and computer picked ${computerMove}. ${result}`);
+    ">
+      Paper
+    </button>
+
+    <button onclick="
+      const randomNumber = Math.random();
+      let computerMove = '';
+      let result = '';
+
+      if (randomNumber < 0.34) {
+        computerMove = 'Rock';
+      } else if (randomNumber < 0.67) {
+        computerMove = 'Paper';
+      } else {
+        computerMove = 'Scissors';
+      }
+      console.log(computerMove);
+
+      if (computerMove === 'Rock') {
+        result = 'You Lose';
+      } else if (computerMove === 'Paper') {
+        result = 'You Win.';
+      } else {
+        result = 'Tie.';
+      }
+      alert(`You picked Scissors and computer picked ${computerMove}. ${result}`);
+    ">
+      Scissors
+    </button>
+
+    <script>
+      true ? 1 : 2;
+
+      // same as if(5) {"hi"}
+      // && is GUARD operator, it does NOT return a boolean, it returns the first value if it is truthy, otherwise it returns the second value
+      5 && "hi";
+      // USD is default operator, it returns the first value if it is truthy, otherwise it returns the second value
+      const currency = false || "USD"
+      console.log(currency);
+    </script>
+  </body>
+</html>

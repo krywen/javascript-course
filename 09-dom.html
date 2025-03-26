@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head> 
+    <title>DOM</title>
+    <style>
+    </style>
+
+  </head>
+
+  <body>
+    <button>hello</button>
+    <button class="js-button">Second button</button>
+    <!-- here is the bode, non js -->
+    <script>
+      /*
+      // document.body.innerHTML = 'hello';
+      document.title = 'good job';
+
+      document.title;
+      console.log(document.body);
+      console.log(typeof document.body);
+      console.log(document.body.innerHTML);
+      document.body.innerHTML = 'Changed';
+      console.log(document.body.innerHTML);
+      document.body.innerHTML = '<button>Good Joob</button>';
+      */
+      console.log(document.querySelector('button').innerHTML);
+      document.querySelector('button').innerHTML = 'Changed';
+
+      //  the dot . search for a class
+      console.log(document.querySelector('.js-button'));
+      const buttonElement = document.querySelector('.js-button');
+    </script>
+  </body>
+</html>

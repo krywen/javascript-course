@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head> 
+    <title>HTML CSS Review</title>
+    <!-- Style is an html special element that get CSS code -->
+    <style>
+      .red-button { /*CSS Selector*/
+        /*CSS Value : property*/
+        background-color: red;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+      }
+
+      .yellow-button {
+        background-color: yellow;
+        color: black;
+        padding: 10px 20px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- HTML attribute= value -->
+    <!-- class is like a label -->
+
+    <!-- onclick is more JS -->
+    <button title="tooltip" class="red-button" onclick="
+      alert('Good job!');
+    ">
+      Hello
+    </button>
+
+    <p>This is the paragraph of       
+      <button class="yellow-button">hello</button> textt
+    </p>
+
+    <!-- This is javascript -->
+    <script>
+      // this is a comment in js
+      alert("Hello, world!");
+
+      console.log(2+2);
+      console.log('some' + 'text')
+    </script>
+  </body>
+</html>
