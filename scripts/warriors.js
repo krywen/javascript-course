@@ -1,8 +1,6 @@
-
 const tableElement = document.querySelector(".js-table-3-2");
 
 // Row 1
-
 addRowToTable(3,2,true,false, tableElement);
 addRowToTable(3,2,false,false, tableElement);
 addRowToTable(3,2,false,true, tableElement);
@@ -70,11 +68,13 @@ function fillFirst2Cols(
 }
 
 function fillRow(row, probabilities) {
-  row.cells[2].textContent = (probabilities.winwin * 100).toFixed(1) + '%';
-  row.cells[3].textContent = (probabilities.winlose * 100).toFixed(1) + '%';
-  row.cells[4].textContent = (probabilities.loselose * 100).toFixed(1) + '%';
-  row.cells[5].textContent = (probabilities.win * 100).toFixed(1) + '%';
-  row.cells[6].textContent = (probabilities.lose * 100).toFixed(1) + '%';
+  const formatProb = (prob) => prob === 0 ? "" : (prob * 100).toFixed(1) + '%';
+  
+  row.cells[2].textContent = formatProb(probabilities.winwin);
+  row.cells[3].textContent = formatProb(probabilities.winlose);
+  row.cells[4].textContent = formatProb(probabilities.loselose);
+  row.cells[5].textContent = formatProb(probabilities.win);
+  row.cells[6].textContent = formatProb(probabilities.lose);
 }
 
 function getAttackerProbabilities(
@@ -148,31 +148,10 @@ function getOutcomesFromDice(attackOutcomes, defenderOutcomes) {
 }
 
 function getOutcomeProbA3D2(attack, defense, accum) {
-  // if (attack.length <2) {
-  //   console.error("bad outcome attack");
-  //   return;
-  // }
-  // if (defense.length <2) {
-  //   console.error(`bad outcome defense; ${typeof defense} ${defense}`);
-  //   return;
-  // }
-  // if (attack[0]>defense[0] && attack[1]>defense[1])
-  //   accum.winwin++
-  // else if (attack[0]>defense[0] && attack[1]<=defense[1])
-  //   accum.winlose++;
-  // else if (attack[0]<=defense[0] && attack[1]>defense[1])
-  //   accum.winlose++;
-  // else if (attack[0]<=defense[0] && attack[1]<=defense[1])
-  //   accum.loselose++;
-
-  // method for any number of dice, max 2 in defense
-
   let numWin = 0;
   let numLose = 0;
 
-  // console.log(`defense ${defense}; ${typeof defense}`);
   let numDiceToCompare = Math.min(attack.length, defense.length);
-  console.log(`numDiceToCompare ${numDiceToCompare}`);
   for (let i=0; i<numDiceToCompare; i++) {
     if (attack[i]>defense[i])
       numWin++;
