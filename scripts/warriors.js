@@ -1,4 +1,4 @@
-const tableElement = document.querySelector(".js-table-3-2");
+const tableElement = document.querySelector(".js-warriors-table");
 
 // Row 1
 addRowToTable(3,2,true,false, tableElement);
@@ -24,6 +24,7 @@ addRowToTable(1,1,false,true, tableElement);
 addRowToTable(1,2,true,false, tableElement);
 addRowToTable(1,2,false,false, tableElement);
 addRowToTable(1,2,false,true, tableElement);
+
 
 
 
@@ -82,10 +83,20 @@ function getAttackerProbabilities(
   defenseDiceNum,
   attackerHasPlusOneAdvantage,
   defenderHasPlusOneAdvantage,
+  attackerIsDragon=false,
+  defenderIsDragon=false
 ) {
   if (attackerHasPlusOneAdvantage && defenderHasPlusOneAdvantage) {
     console.error('attackerHasPlusOneAdvantage && defenderHasPlusOneAdvantage cannot be both true');
     return;
+  }
+  if (attackerIsDragon) {
+    attackDiceNum = 2;
+    attackerHasPlusOneAdvantage = false;
+  }
+  if (defenderIsDragon) {
+    defenseDiceNum = 2;
+    defenderHasPlusOneAdvantage = false;
   }
   attackOutcomes = generateOutcomesForDice(attackDiceNum);
   defenderOutcomes = generateOutcomesForDice(defenseDiceNum);
@@ -108,6 +119,14 @@ function getAttackerProbabilities(
   }
   if (defenderHasPlusOneAdvantage) {
     defenderOutcomes.forEach(arr => arr[0]++);
+  }
+  if(attackerIsDragon) {
+    attackOutcomes.forEach(arr => arr[0]++);
+    attackOutcomes.forEach(arr => arr[1]++);
+  }
+  if(defenderIsDragon) {
+    defenderOutcomes.forEach(arr => arr[0]++);
+    defenderOutcomes.forEach(arr => arr[1]++);
   }
 
   // console.log(`defenderOutcomes=${defenderOutcomes.lenght}`);
@@ -185,4 +204,91 @@ function generateOutcomesForDice(diceNum) {
     ret = tmp.slice();
   }
   return ret;
+}
+
+
+// Dragon
+// Entirely
+
+const dragonTableElement = document.querySelector(".js-dragon-table");
+addRowToDragonTable(1,false,2,false,true,false, dragonTableElement);
+addRowToDragonTable(1,false,2,true,true,false, dragonTableElement);
+addRowToDragonTable(1,false,1,false,true,false, dragonTableElement);
+addRowToDragonTable(1,false,1,true,true,false, dragonTableElement);
+
+addRowToDragonTable(3,true,1,false,false,true, dragonTableElement);
+addRowToDragonTable(3,false,1,false,false,true, dragonTableElement);
+
+addRowToDragonTable(2,true,1,false,false,true, dragonTableElement);
+addRowToDragonTable(2,false,1,false,false,true, dragonTableElement);
+
+addRowToDragonTable(1,false,1,false,false,true, dragonTableElement);
+addRowToDragonTable(1,false,1,true,false,true, dragonTableElement);
+
+addRowToDragonTable(1,false,1,true,true,true, dragonTableElement);
+
+
+function addRowToDragonTable(
+  attackDiceNum,
+  attackerHasPlusOneAdvantage,
+  defenseDiceNum,
+  defenderHasPlusOneAdvantage,
+  attackerIsDragon,
+  defenderIsDragon,
+  tableElement
+) {
+  let probabilities = getAttackerProbabilities(
+    attackDiceNum,
+    defenseDiceNum,
+    attackerHasPlusOneAdvantage,
+    defenderHasPlusOneAdvantage,
+    attackerIsDragon,
+    defenderIsDragon
+  );
+
+  row = tableElement.insertRow()
+  for (let i=0; i<7; i++) row.insertCell();
+  fillDragonRow(row, probabilities);
+  fillDragonFirst2Cols(
+    attackDiceNum,
+    defenseDiceNum,
+    attackerHasPlusOneAdvantage,
+    defenderHasPlusOneAdvantage,
+    attackerIsDragon,
+    defenderIsDragon,
+    row
+  );
+}
+
+
+function fillDragonFirst2Cols(
+  attackDiceNum,
+    defenseDiceNum,
+    attackerHasPlusOneAdvantage,
+    defenderHasPlusOneAdvantage,
+    attackerIsDragon,
+    defenderIsDragon,
+    row
+) {
+  if (attackerIsDragon)
+    row.cells[0].innerHTML = `<img src="./images/dragon.png" class="dice-icon">`
+  else
+    row.cells[0].innerHTML = `<img src="./images/red_dice.png" class="dice-icon">
+    `.repeat(attackDiceNum) + `+ <img src="./images/balestra.png" class="dice-icon">`.repeat(attackerHasPlusOneAdvantage && 1);
+
+  if (defenderIsDragon)
+    row.cells[1].innerHTML = `<img src="./images/dragon.png" class="dice-icon">`
+  else
+    row.cells[1].innerHTML = `<img src="./images/black_dice.png" class="dice-icon">`
+    .repeat(defenseDiceNum) + `+ <img src="./images/balestra.png" class="dice-icon">`.repeat(defenderHasPlusOneAdvantage && 1);
+}
+
+function fillDragonRow(row, probabilities) {
+  const formatProb = (prob) => prob === 0 ? "" : (prob * 100).toFixed(1) + '%';
+  
+  row.cells[2].textContent = formatProb(probabilities.winwin);
+  row.cells[3].textContent = formatProb(probabilities.winlose);
+  row.cells[4].textContent = formatProb(probabilities.loselose);
+  row.cells[5].textContent = formatProb(probabilities.win);
+  row.cells[6].textContent = formatProb(probabilities.lose);
 }
