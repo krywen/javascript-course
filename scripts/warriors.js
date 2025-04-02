@@ -27,8 +27,6 @@ addRowToTable(1,2,false,true, tableElement);
 
 
 
-
-
 function addRowToTable(
   attackDiceNum,
   defenseDiceNum,
@@ -222,8 +220,8 @@ addRowToDragonTable(3,false,1,false,false,true, dragonTableElement);
 addRowToDragonTable(2,true,1,false,false,true, dragonTableElement);
 addRowToDragonTable(2,false,1,false,false,true, dragonTableElement);
 
+addRowToDragonTable(1,true,1,false,false,true, dragonTableElement);
 addRowToDragonTable(1,false,1,false,false,true, dragonTableElement);
-addRowToDragonTable(1,false,1,true,false,true, dragonTableElement);
 
 addRowToDragonTable(1,false,1,true,true,true, dragonTableElement);
 
